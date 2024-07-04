@@ -48,7 +48,10 @@ def run_code(request: CodeExecutionRequest):
     session_id = request.session_id
     
     if session_id not in session_manager:
-        raise HTTPException(status_code=404, detail="Session not found.")
+        session_manager[session_id] = {
+            "packages": set(),
+            "files": set()
+        }
     
     try:
         # Set environment variables

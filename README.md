@@ -16,7 +16,7 @@ curl -X POST http://localhost:8000/execute -H "Content-Type: application/json" -
 }'
 
 ## Result
-# {"detail":"Session not found."}
+# {"status":"success","output":"","errors":"Traceback (most recent call last):\n  File \"/tmp/your_session_id/temp_code.py\", line 2, in <module>\n    import numpy as np\nModuleNotFoundError: No module named 'numpy'\n"}
 ```
 
 Example curl Request (Install numpy and execute the code):
@@ -69,7 +69,7 @@ curl -X POST http://localhost:8000/execute -H "Content-Type: application/json" -
 }'
 
 ## Result
-# {"detail":"Session not found."}
+# {"status":"success","output":"","errors":"Traceback (most recent call last):\n  File \"/tmp/your_session_id/temp_code.py\", line 2, in <module>\n    import numpy as np\nModuleNotFoundError: No module named 'numpy'\n"}
 ```
 
 ### Execute against files

@@ -1,7 +1,9 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, File, UploadFile
 from pydantic import BaseModel
 import subprocess
 import os
+import shutil
+import tempfile
 
 app = FastAPI()
 
@@ -35,6 +37,18 @@ def run_code(request: CodeExecutionRequest):
 
         return {"status": "success", "output": result.stdout, "errors": result.stderr}
     except subprocess.CalledProcessError as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+@app.post("/upload")
+async def create_upload_file(file: UploadFile):
+    try:
+        upload_dir = "/tmp/uploads"
+        os.makedirs(upload_dir, exist_ok=True)
+        file_location = f"{upload_dir}/{file.filename}"
+        with open(file_location, "wb+") as file_object:
+            shutil.copyfileobj(file.file, file_object)
+        return {"filename": file.filename, "location": file_location}
+    except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == '__main__':

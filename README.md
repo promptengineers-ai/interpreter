@@ -26,3 +26,27 @@ curl -X POST http://localhost:8000/execute -H "Content-Type: application/json" -
   }
 }'
 ```
+
+Upload File
+```bash
+curl -X POST "http://localhost:8000/upload" \
+  -H "accept: application/json" \
+  -H "Content-Type: multipart/form-data" \
+  -F "file=@data/AAPL.csv"
+```
+
+Count Rows in file
+```bash
+curl -X POST http://localhost:8000/execute -H "Content-Type: application/json" -d '{
+  "packages": ["pandas"],
+  "code": "import pandas as pd\nfile_path = \"/tmp/uploads/AAPL.csv\"\ndf = pd.read_csv(file_path)\nrow_count = len(df)\nprint(f\"Row count: {row_count}\")"
+}'
+```
+
+Data in first row
+```bash
+curl -X POST http://localhost:8000/execute -H "Content-Type: application/json" -d '{
+  "packages": ["pandas"],
+  "code": "import pandas as pd\nfile_path = \"/tmp/uploads/AAPL.csv\"\ndf = pd.read_csv(file_path)\nfirst_row = df.iloc[0]\nprint(first_row.to_json())"
+}'
+```

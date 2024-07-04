@@ -2,6 +2,7 @@ version: '3'
 
 services:
   jupyter:
+    container_name: interpreter
     build: .
     ports:
       - "8888:8888"
@@ -11,4 +12,4 @@ services:
       - PYTHONPATH=/home/jovyan
     entrypoint: ["sh", "-c", "start-notebook.sh --NotebookApp.token='' & uvicorn api:app --host 0.0.0.0 --port 8000"]
     volumes:
-      - ./uploads:/tmp/uploads
+      - ./uploads:/tmp

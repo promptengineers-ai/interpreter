@@ -1,9 +1,9 @@
 from fastapi import FastAPI, HTTPException, File, UploadFile, Form
 from pydantic import BaseModel
+from fastapi.responses import FileResponse
 import subprocess
 import os
 import shutil
-import tempfile
 from typing import List, Dict
 
 app = FastAPI()
@@ -125,6 +125,16 @@ def terminate_session(request: TerminateSessionRequest):
         raise HTTPException(status_code=500, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+@app.get("/download")
+def download_file(session_id: str, filename: str):
+    session_dir = f"/tmp/{session_id}"
+    file_path = f"{session_dir}/{filename}"
+    
+    if not os.path.exists(file_path):
+        raise HTTPException(status_code=404, detail="File not found.")
+    
+    return FileResponse(path=file_path, filename=filename)
 
 if __name__ == '__main__':
     import uvicorn

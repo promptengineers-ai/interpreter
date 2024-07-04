@@ -110,6 +110,15 @@ curl -X POST http://localhost:8000/execute -H "Content-Type: application/json" -
 # {"status":"success","output":"{\"Date\":\"2022-03-16\",\"Open\":157.050003,\"High\":160.0,\"Low\":154.460007,\"Close\":159.589996,\"Adj Close\":158.629059,\"Volume\":102300200}\n","errors":""}
 ```
 
+Download file from session
+
+```bash
+curl -X GET "http://localhost:8000/download?session_id=your_session_id&filename=AAPL.csv" -o AAPL_downloaded.csv
+
+## Result
+# File downloaded to workspace
+```
+
 Terminate session to uninstall pacakges and remove files.
 
 ```bash

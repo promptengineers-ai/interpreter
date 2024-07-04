@@ -1,6 +1,40 @@
-# Python Sandboxed - Code Interpreter
+<h1 align="center">
+  🤖 Prompt Engineers AI - Secure Code Interpreter (Sandboxed) 
+</h1>
 
-This API allows users to execute Python code in a sandboxed environment, upload files, install packages, and manage sessions. Each session is isolated to ensure that the code, files, and packages do not interfere with other users.
+<p align="center">
+  <a href="https://promptengineers-ai.gitbook.io/documentation/open-source"><img src="https://img.shields.io/badge/View%20Documentation-Docs-yellow"></a>
+  <a href="https://join.slack.com/t/promptengineersai/shared_invite/zt-21upjsftv-gX~gNjTCU~2HfbeM_ZwTEQ"><img src="https://img.shields.io/badge/Join%20our%20community-Slack-blue"></a>
+</p>
+
+Unlock the potential of executing Python code safely and efficiently with the Prompt Engineers AI - Secure Code Interpreter. This API provides a robust sandboxed environment where users can execute Python scripts, upload files, install packages, and manage sessions with complete isolation from your main application code. Each session is meticulously separated, ensuring that the code, files, and packages for one session do not interfere with others, thereby enhancing security and preventing potential conflicts.
+
+Our sandbox is designed with security as a top priority. By isolating execution environments, we mitigate risks associated with running untrusted code. This makes it an ideal solution for developers and organizations who need a safe and controlled way to execute scripts, test code snippets, or provide coding functionalities within their applications.
+
+Key Features:
+- 🛡️ **Secure Execution:** Run Python code in a sandboxed environment to ensure the applications remains secure and unaffected.
+- 📁 **File Management:** Upload and manage files within isolated sessions to maintain data integrity and security.
+- 📦 **Package Installation:** Install required Python packages per session without affecting the global environment.
+- 🕹️ **Session Management:** Efficiently create, manage, and terminate sessions to maintain clean and organized execution spaces.
+
+### Start Interpreter
+```bash
+docker-compose up --build
+```
+
+### Example Requests
+
+Simple Example
+
+```bash
+curl -X POST http://localhost:8000/execute -H "Content-Type: application/json" -d '{
+  "session_id": "your_session_id",
+  "code": "print(\"Hello from Interpreter!\")"
+}'
+
+## Result
+# {"status":"success","output":"Hello from Interpreter!\n","errors":""}
+```
 
 Example curl Request (Verify will error when numpy is not installed):
 

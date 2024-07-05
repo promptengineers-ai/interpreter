@@ -1,16 +1,12 @@
-from __future__ import annotations
-
-import pprint
 from typing import List
 
 from langchain_core.tools import BaseToolkit
-from langchain_core.pydantic_v1 import BaseModel, Field
-
+from langchain_core.pydantic_v1 import Field
 from langchain_community.tools import BaseTool
 
 from tools import Interpreter
 
-class InterpreterToolkit(BaseToolkit, BaseModel):
+class InterpreterToolkit(BaseToolkit):
     """Toolkit for the interpreter."""
 
     api_url: str = Field(default="http://localhost:8000")

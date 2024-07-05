@@ -22,6 +22,22 @@ Key Features:
 docker-compose up --build
 ```
 
+### Test the Langchain Toolkit
+```bash
+## Change Directory
+cd toolkit
+
+## Create Virtual Env
+python3 -m venv .venv
+source .venv/bin/activate
+
+## Install Dependencies
+pip install -r requirements.txt
+
+## Run Script to view & test tool
+python interpreter.py
+```
+
 ### Example Requests
 
 Simple Example

@@ -214,30 +214,35 @@ class Interpreter:
             func=self.execute,
             name="execute_code",
             description="Use this tool to execute python code.",
+            handle_tool_error=True,
         )
         install_tool = StructuredTool.from_function(
             args_schema=InstallSchema,
             func=self.install,
             name="install",
             description="Use this tool to install python packages.",
+            handle_tool_error=True,
         )
         terminate_tool = StructuredTool.from_function(
             args_schema=TerminateSchema,
             func=self.terminate,
             name="terminate",
             description="Use this tool to terminate the session.",
+            handle_tool_error=True,
         )
         upload_tool = StructuredTool.from_function(
             args_schema=UploadSchema,
             func=self.upload,
             name="upload",
             description="Use this tool to upload a file.",
+            handle_tool_error=True,
         )
         download_tool = StructuredTool.from_function(
             args_schema=DownloadSchema,
             func=self.download,
             name="download",
             description="Use this tool to download a file.",
+            handle_tool_error=True,
         )
         return [
             execute_tool,

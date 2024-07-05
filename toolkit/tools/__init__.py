@@ -219,28 +219,28 @@ class Interpreter:
         install_tool = StructuredTool.from_function(
             args_schema=InstallSchema,
             func=self.install,
-            name="install",
+            name="install_packages",
             description="Use this tool to install python packages.",
             handle_tool_error=True,
         )
         terminate_tool = StructuredTool.from_function(
             args_schema=TerminateSchema,
             func=self.terminate,
-            name="terminate",
+            name="terminate_session",
             description="Use this tool to terminate the session.",
             handle_tool_error=True,
         )
         upload_tool = StructuredTool.from_function(
             args_schema=UploadSchema,
             func=self.upload,
-            name="upload",
+            name="upload_file",
             description="Use this tool to upload a file.",
             handle_tool_error=True,
         )
         download_tool = StructuredTool.from_function(
             args_schema=DownloadSchema,
             func=self.download,
-            name="download",
+            name="download_file",
             description="Use this tool to download a file.",
             handle_tool_error=True,
         )

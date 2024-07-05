@@ -43,7 +43,7 @@ python interpreter.py
 Simple Example
 
 ```bash
-curl -X POST http://localhost:8000/execute -H "Content-Type: application/json" -d '{
+curl -X POST http://localhost:8001/execute -H "Content-Type: application/json" -d '{
   "session_id": "your_session_id",
   "code": "print(\"Hello from Interpreter!\")"
 }'
@@ -55,7 +55,7 @@ curl -X POST http://localhost:8000/execute -H "Content-Type: application/json" -
 Example curl Request (Verify will error when numpy is not installed):
 
 ```bash
-curl -X POST http://localhost:8000/execute -H "Content-Type: application/json" -d '{
+curl -X POST http://localhost:8001/execute -H "Content-Type: application/json" -d '{
   "session_id": "your_session_id",
   "code": "import os\nimport numpy as np\na = int(os.getenv(\"VAR_A\"))\nb = int(os.getenv(\"VAR_B\"))\nc = int(os.getenv(\"VAR_C\"))\narray = np.array([a, b, c])\nresult = np.sum(array)\nprint(f\"Result of summing [{a}, {b}, {c}] is: {result}\")",
   "env": {
@@ -72,7 +72,7 @@ curl -X POST http://localhost:8000/execute -H "Content-Type: application/json" -
 Example curl Request (Install numpy and execute the code):
 
 ```bash
-curl -X POST http://localhost:8000/install -H "Content-Type: application/json" -d '{
+curl -X POST http://localhost:8001/install -H "Content-Type: application/json" -d '{
   "session_id": "your_session_id",
   "packages": ["numpy"]
 }'
@@ -84,7 +84,7 @@ curl -X POST http://localhost:8000/install -H "Content-Type: application/json" -
 Execute numpy with Env vars
 
 ```bash
-curl -X POST http://localhost:8000/execute -H "Content-Type: application/json" -d '{
+curl -X POST http://localhost:8001/execute -H "Content-Type: application/json" -d '{
   "session_id": "your_session_id",
   "code": "import os\nimport numpy as np\na = int(os.getenv(\"VAR_A\"))\nb = int(os.getenv(\"VAR_B\"))\nc = int(os.getenv(\"VAR_C\"))\narray = np.array([a, b, c])\nresult = np.sum(array)\nprint(f\"Result of summing [{a}, {b}, {c}] is: {result}\")",
   "env": {
@@ -101,14 +101,14 @@ curl -X POST http://localhost:8000/execute -H "Content-Type: application/json" -
 Example curl Request (Verify numpy has been uninstalled):
 
 ```bash
-curl -X POST http://localhost:8000/terminate -H "Content-Type: application/json" -d '{
+curl -X POST http://localhost:8001/terminate -H "Content-Type: application/json" -d '{
   "session_id": "your_session_id"
 }'
 
 ## Result
 # {"status":"success","message":"Session your_session_id terminated successfully."}
 
-curl -X POST http://localhost:8000/execute -H "Content-Type: application/json" -d '{
+curl -X POST http://localhost:8001/execute -H "Content-Type: application/json" -d '{
   "session_id": "your_session_id",
   "code": "import os\nimport numpy as np\na = int(os.getenv(\"VAR_A\"))\nb = int(os.getenv(\"VAR_B\"))\nc = int(os.getenv(\"VAR_C\"))\narray = np.array([a, b, c])\nresult = np.sum(array)\nprint(f\"Result of summing [{a}, {b}, {c}] is: {result}\")",
   "env": {
@@ -127,7 +127,7 @@ curl -X POST http://localhost:8000/execute -H "Content-Type: application/json" -
 Upload a file for a specific session.
 
 ```bash
-curl -X POST "http://localhost:8000/upload" \
+curl -X POST "http://localhost:8001/upload" \
   -H "accept: application/json" \
   -F "session_id=your_session_id" \
   -F "file=@data/AAPL.csv"
@@ -139,7 +139,7 @@ curl -X POST "http://localhost:8000/upload" \
 Install pandas pacakage for created session to interact with csv.
 
 ```bash
-curl -X POST http://localhost:8000/install -H "Content-Type: application/json" -d '{
+curl -X POST http://localhost:8001/install -H "Content-Type: application/json" -d '{
   "session_id": "your_session_id",
   "packages": ["pandas"]
 }'
@@ -151,7 +151,7 @@ curl -X POST http://localhost:8000/install -H "Content-Type: application/json" -
 Execute to interact with csv
 
 ```bash
-curl -X POST http://localhost:8000/execute -H "Content-Type: application/json" -d '{
+curl -X POST http://localhost:8001/execute -H "Content-Type: application/json" -d '{
   "session_id": "your_session_id",
   "code": "import pandas as pd\nfile_path = \"/tmp/your_session_id/AAPL.csv\"\ndf = pd.read_csv(file_path)\nfirst_row = df.iloc[0]\nprint(first_row.to_json())"
 }'
@@ -163,7 +163,7 @@ curl -X POST http://localhost:8000/execute -H "Content-Type: application/json" -
 Download file from session
 
 ```bash
-curl -X GET "http://localhost:8000/download?session_id=your_session_id&filename=AAPL.csv" -o AAPL_downloaded.csv
+curl -X GET "http://localhost:8001/download?session_id=your_session_id&filename=AAPL.csv" -o AAPL_downloaded.csv
 
 ## Result
 # File downloaded to workspace
@@ -172,7 +172,7 @@ curl -X GET "http://localhost:8000/download?session_id=your_session_id&filename=
 Terminate session to uninstall pacakges and remove files.
 
 ```bash
-curl -X POST http://localhost:8000/terminate -H "Content-Type: application/json" -d '{
+curl -X POST http://localhost:8001/terminate -H "Content-Type: application/json" -d '{
   "session_id": "your_session_id"
 }'
 

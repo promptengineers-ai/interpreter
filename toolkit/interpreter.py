@@ -9,7 +9,7 @@ from tools import Interpreter
 class InterpreterToolkit(BaseToolkit):
     """Toolkit for the interpreter."""
 
-    api_url: str = Field(default="http://localhost:8000")
+    api_url: str = Field(default="http://localhost:8001")
 
     class Config:
         """Pydantic config."""
